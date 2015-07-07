@@ -1,0 +1,51 @@
+tests/cases/compiler/super_inside-object-literal-getters-and-setters.ts(4,13): error TS1056: Accessors are only available when targeting ECMAScript 5 and higher.
+tests/cases/compiler/super_inside-object-literal-getters-and-setters.ts(5,20): error TS2335: 'super' can only be referenced in a derived class.
+tests/cases/compiler/super_inside-object-literal-getters-and-setters.ts(7,13): error TS1056: Accessors are only available when targeting ECMAScript 5 and higher.
+tests/cases/compiler/super_inside-object-literal-getters-and-setters.ts(8,13): error TS2335: 'super' can only be referenced in a derived class.
+tests/cases/compiler/super_inside-object-literal-getters-and-setters.ts(11,20): error TS2335: 'super' can only be referenced in a derived class.
+tests/cases/compiler/super_inside-object-literal-getters-and-setters.ts(20,17): error TS1056: Accessors are only available when targeting ECMAScript 5 and higher.
+tests/cases/compiler/super_inside-object-literal-getters-and-setters.ts(21,24): error TS2338: 'super' property access is permitted only in a constructor, member function, or member accessor of a derived class
+
+
+==== tests/cases/compiler/super_inside-object-literal-getters-and-setters.ts (7 errors) ====
+    module ObjectLiteral {
+        var ThisInObjectLiteral = {
+            _foo: '1',
+            get foo(): string {
+                ~~~
+!!! error TS1056: Accessors are only available when targeting ECMAScript 5 and higher.
+                return super._foo;
+                       ~~~~~
+!!! error TS2335: 'super' can only be referenced in a derived class.
+            },
+            set foo(value: string) {
+                ~~~
+!!! error TS1056: Accessors are only available when targeting ECMAScript 5 and higher.
+                super._foo = value;
+                ~~~~~
+!!! error TS2335: 'super' can only be referenced in a derived class.
+            },
+            test: function () {
+                return super._foo;
+                       ~~~~~
+!!! error TS2335: 'super' can only be referenced in a derived class.
+            }
+        }
+    }
+    
+    class F { public test(): string { return ""; } }
+    class SuperObjectTest extends F {
+        public testing() {
+            var test = {
+                get F() {
+                    ~
+!!! error TS1056: Accessors are only available when targeting ECMAScript 5 and higher.
+                    return super.test();
+                           ~~~~~
+!!! error TS2338: 'super' property access is permitted only in a constructor, member function, or member accessor of a derived class
+                }
+            };
+        }
+    }
+    
+    
