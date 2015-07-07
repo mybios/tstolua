@@ -1,4 +1,3 @@
--- https://github.com/rrthomas/lrexlib/downloads
 -- http://apostata.web.fc2.com/luaregex/index-en.html
 
 -- luaregex.lua  ver.130911
